@@ -72,12 +72,12 @@ RSpec.configure do |config|
   # individual spec file.
 =end
 
-  if config.files_to_run.one?
+  #if config.files_to_run.one?
     # Use the documentation formatter for detailed output,
     # unless a formatter has already been configured
     # (e.g. via a command-line flag).
-    config.default_formatter = "doc"
-  end
+   # config.default_formatter = "doc"
+  #end
 
 =begin
   # Print the 10 slowest examples and example groups at the
