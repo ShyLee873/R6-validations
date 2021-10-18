@@ -26,7 +26,8 @@ describe "get new_customer_path" do
   end
   describe "get edit_customer_path" do
     it "renders the :edit template" do 
-      get edit_customer_path
+      customer = FactoryBot.create(:customer)
+      get edit_customer_path(id: customer.id)
       expect(response).to render_template(:edit)
     end
   end
@@ -68,6 +69,10 @@ describe "get new_customer_path" do
     end
   end
   describe "delete a customer record" do
-    it "deletes a customer record"
+    it "deletes a customer record" do
+      customer = FactoryBot.create(:customer)
+      customer.destroy
+      expect(get customer_path(id: 5000))
+    end
   end
 end
