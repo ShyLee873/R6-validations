@@ -20,5 +20,34 @@
   <%= @customer.email %>
 </p>
 
+
+
+<% if !@customer.order.exists? %>
+  <p style="color:red;">This customer has not created any orders</p>
+<% elsif @customer.order.exists? %>
+  <p>
+  <strong>Orders:</strong>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Quant</th>
+      <th>Actions</th>
+    </tr>
+    <% @customer.order.each do |order| %>
+      <tr>
+        <td style="text-align:left"><%= order.product_name %></td>
+        <td style="text-align:center"><%= order.product_count %></td>
+        <td><%=link_to 'Show', order  %> |
+        <%= link_to 'Edit', edit_order_path(order) %> |
+        <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %> 
+        </td>
+      </tr>
+    <% end %>    
+  </table>
+  </p>
+<% end %>
+
+
+
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
