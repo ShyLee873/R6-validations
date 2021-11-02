@@ -1,6 +1,27 @@
-<h1>Editing Customer</h1>
+<div class="row mx-5 my-5">
+  <div class="col justify-content-center">
+    <h1 class="text-center">Edit Customer</h1>
+    <br>
+    <%= render 'form', customer: @customer %>
+  </div>
+  <div class="col text-center my-1">
+    <h3>*All Fields Required*</h3>
+    <br>
+    <p>Phone number must contain 10 digits (integers only) <br>
+    Email must include "@" and no special characters
+    </p>
+  </div>
+</div>
 
-<%= render 'form', customer: @customer %>
 
-<%= link_to 'Show', @customer %> |
-<%= link_to 'Back', customers_path %>
+
+<div class="row">
+  <div class="col-md-12 text-center my-3">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <%= link_to 'Show', @customer, class: "btn btn-info btn-sm" %> 
+      <%= link_to 'Back', customers_path, class: "btn btn-info btn-sm" %>
+    </div>
+  </div>      
+</div>  
+
+

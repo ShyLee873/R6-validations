@@ -1,5 +1,27 @@
-<h1>New Order</h1>
+<div class="row mx-5 my-5">
+  <div class="col justify-content-center">
+    <h1 class="text-center">New Order</h1>
+    <br>
+    <%= render 'form', order: @order %>
+  </div>
+  <div class="col text-center my-1">
+    <h3>*All Fields Required*</h3>
+    <br>
+    <p>Order can only be completed for a customer with a valid id.</p>
+  </div>
+</div>
 
-<%= render 'form', order: @order %>
+<div class="text-center">
+  <%= link_to 'Back', orders_path, class: "btn btn-info btn-sm"%>
+</div>
 
-<%= link_to 'Back', orders_path %>
+
+
+
+
+
+
+
+
+
+

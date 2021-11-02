@@ -1,53 +1,68 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
+<div class="row mx-2 my-5">
+  <div class="col my-3">
+    <h1 class="text-center mb-5">Customer</h1>
+    <div class="container mx-auto" style="width:250px;">
+      <p>
+        <strong>First name:</strong>
+        <%= @customer.first_name %>
+      </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
+      <p>
+        <strong>Last name:</strong>
+        <%= @customer.last_name %>
+      </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @customer.phone %>
-</p>
+      <p>
+        <strong>Phone:</strong>
+        <%= @customer.phone %>
+      </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
+      <p>
+        <strong>Email:</strong>
+        <%= @customer.email %>
+      </p>
+    </div>  
+  </div>
 
+  <div class="col">
 
+    <% if !@customer.order.exists? %>
+      <p style="color:red;">This customer has not created any orders</p>
+    <% elsif @customer.order.exists? %>
+      <p>
+      <h1 class="text-center">Orders</h1>
+      <table class="table table-striped mt-5">
+        <tr>
+          <th>Item</th>
+          <th style="text-align:center">Quant</th>
+          <th style="text-align:">Actions</th>
+        </tr>
+        <% @customer.order.each do |order| %>
+          <tr>
+            <td style="text-align:left"><%= order.product_name %></td>
+            <td style="text-align:center"><%= order.product_count %></td>
+            <td class="btn-group justify-content-right" role="group" aria-label="Basic example">
+              <%=link_to 'Show', order, class: "btn btn-outline-info btn-sm" %>
+              <%=link_to 'Edit', edit_order_path(order), class: "btn btn-outline-info btn-sm" %>
+              <%=link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+            </td>
+          </tr>
+        <% end %>    
+      </table>
+      </p>
+    <% end %>
+  </div>
 
-<% if !@customer.order.exists? %>
-  <p style="color:red;">This customer has not created any orders</p>
-<% elsif @customer.order.exists? %>
-  <p>
-  <strong>Orders:</strong>
-  <table>
-    <tr>
-      <th>Item</th>
-      <th>Quant</th>
-      <th>Actions</th>
-    </tr>
-    <% @customer.order.each do |order| %>
-      <tr>
-        <td style="text-align:left"><%= order.product_name %></td>
-        <td style="text-align:center"><%= order.product_count %></td>
-        <td><%=link_to 'Show', order  %> |
-        <%= link_to 'Edit', edit_order_path(order) %> |
-        <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %> 
-        </td>
-      </tr>
-    <% end %>    
-  </table>
-  </p>
-<% end %>
+  <div class="container">
+    <div class="col-md-12 text-center my-3">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <%= link_to 'Edit', edit_customer_path(@customer), class: "btn btn-info btn-sm" %> 
+        <%= link_to 'Back', customers_path, class: "btn btn-info btn-sm" %>
+      </div>
+    </div>      
+  </div>  
 
+</div>
 
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>

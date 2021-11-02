@@ -10,24 +10,28 @@
         </ul>
       </div>
     <% end %>
-  
-    <div class="field">
-      <%= f.label :product_name %>
-      <%= f.text_field :product_name %>
+    <div class="form-col justify-content-center">
+      <div class="form-group col">
+        <%= f.label :product_name %>
+        <%= f.text_field :product_name, class: 'rounded border-info' %>
+      </div>
+
+      <div class="form-group col ">
+        <%= f.label :product_count %>
+        <%= f.text_field :product_count, class: 'rounded border-info' %>
+      </div>
+    
+
+      <div class="form-group col">
+        <%= f.label :select_customer %>
+        <%= f.collection_select :customer_id, Customer.all, :id, :full_name, include_blank: true %>
+      </div>
     </div>
-  
-    <div class="field">
-      <%= f.label :product_count %>
-      <%= f.text_field :product_count %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :select_customer %>
-      <%= f.collection_select :customer_id, Customer.all, :id, :full_name, include_blank: true %>
-    </div>
-  
-  
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  <% end %>
+
+  <div class="row justify-content-center my-5">
+    <button type="submit" class="btn btn-info">Save Order</button>
+  </div>
+
+<% end %>  
+
+
