@@ -8,9 +8,70 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
   </head>
 
   <body>
-    <%= yield %>
+      <div class="sticky-top">
+        <!-- jumbotron -->
+
+        <div class="jumbotron jumbotron-fluid bg-info text-white">
+          <div class="container text-sm-center">
+            <h1 class="display-2">Gidgets Widgets</h1>
+            <p class="lead">The Random Store of Random things</p>
+          </div>
+        </div>
+
+        <!-- /jumbotron -->
+
+        <% if !flash[:alert].nil? %>
+          <p class="my_alert"><%= flash[:alert] %></p>
+        <% end %>
+
+        <!-- navbar -->
+
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #A1DAEC">
+          
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item dropdown dmenu">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+            Customers
+          </a>
+          <div class="dropdown-menu sm-menu">
+            <%= link_to 'List Customers', customers_path, class: "dropdown-item" %>
+            <%= link_to 'New Customer', new_customer_path, class: "dropdown-item" %>
+          </div>
+        </li>
+        <li class="nav-item dropdown dmenu">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+            Orders
+          </a>
+          <div class="dropdown-menu sm-menu">
+            <%= link_to 'List Orders', orders_path, class: "dropdown-item" %>
+            <%= link_to 'New Order', new_order_path, class: "dropdown-item" %>
+          </div>
+        </li>
+        </ul>
+        </nav>
+        
+        <!-- /navbar -->
+      </div>
+
+    <!-- main body content -->
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <!--/main body content -->
+
+
+
+    <!-- footer -->
+  
+    <!-- /footer -->
   </body>
 </html>
